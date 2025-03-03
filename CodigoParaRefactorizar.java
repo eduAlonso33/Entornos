@@ -9,7 +9,7 @@ public class CodigoParaRefactorizar{
 	public double calculoIva(double precioBase, double porcentajeDescuento) {
 		double precioFinal;
 		precioFinal = precioBase + (0.21 * precioBase); //esto no lo habiamos hecho ya?
-		precioFinal = precioFinal - (precioFinal * porcentajeDescuento/100) 
+		precioFinal = precioFinal - (precioFinal * porcentajeDescuento/100);
 		return precioFinal;
 	}
 
