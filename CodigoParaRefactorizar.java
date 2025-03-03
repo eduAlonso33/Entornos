@@ -1,16 +1,12 @@
 public class CodigoParaRefactorizar{
+	private static final double IVA = 0.21;
 
 	public double calculoIva(double precioBase) {
-		double precioFinal;
-		precioFinal = precioBase + (0.21 * precioBase); //el IVA cambia?
-		return precioFinal;
+		return precioBase + (0.21 * precioBase);
 	}
 	
 	public double calculoIva(double precioBase, double porcentajeDescuento) {
-		double precioFinal;
-		precioFinal = precioBase + (0.21 * precioBase); //esto no lo habiamos hecho ya?
-		precioFinal = precioFinal - (precioFinal * porcentajeDescuento/100);
-		return precioFinal;
+		return calculoIva(precioBase) - (calculoIva(precioBase) * porcentajeDescuento/100);
 	}
 
 	public int diasMes(int mes, int anio) {
@@ -47,7 +43,8 @@ public class CodigoParaRefactorizar{
 	
 			case 2:
 				if (
-						(anio % 400 == 0) ||((anio % 4 == 0) && (anio % 100 != 0))  //esto se entiende?
+						//Comprueba si es bisiesto el año
+						(anio % 400 == 0) ||((anio % 4 == 0) && (anio % 100 != 0))
 					) 
 	
 					diasMes = 29;
@@ -62,15 +59,19 @@ public class CodigoParaRefactorizar{
 		return diasMes;
 
 	}
-	
-	
+
 	public double subidaPrecio(double precioBase, double subida) {
-		precioBase = precioBase+subida;
-		double precioConIVA = calculoIva(precioBase);
-		// es buena práctica que las salidas se externalicen y no se mezcle con la lógica
-		// potencial motivo de refactorización
-		System.out.println("El nuevo precio base es "+precioBase);
-		System.out.println("El precio con IVA es "+precioConIVA);
+		precioBase = precioBase + subida;
 		return precioBase;
 	}
+
+	public double precioConIVA(double precioBase){
+		return calculoIva(precioBase);
+	}
+
+	public void mostrarPrecios(double precioBase, double precioConIVA) {
+		System.out.println("El nuevo precio base es " + precioBase);
+		System.out.println("El precio con IVA es " + precioConIVA);
+	}
+
 }
